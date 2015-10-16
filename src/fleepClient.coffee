@@ -20,7 +20,7 @@ module.exports = class FleepClient extends EventEmitter
 
     @on 'pollcomplete', (resp) =>
       @robot.logger.debug 'Poll complete'
-      @handleStreamEvents resp
+      @handleStreamEvents resp if resp?
       @poll()
 
   # Send a POST request to Fleep

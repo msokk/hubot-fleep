@@ -101,7 +101,7 @@ module.exports = class WebRequest extends EventEmitter
             @post path, jsonBody, callback, headers
 
           # Emitted when the maximum number of backoffs is reached
-          @fibonacciBackoff.on 'fail', (number, delay) ->
+          @fibonacciBackoff.on 'fail', (number, delay) =>
             @logger.error 'Max number of backoff requests reached'
 
           @fibonacciBackoff.backoff()

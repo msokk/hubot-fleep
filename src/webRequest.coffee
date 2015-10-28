@@ -15,10 +15,9 @@ module.exports = class WebRequest extends EventEmitter
     # Init Backoff object, which will be used to do exponential backoff
     # when the request fails
     @fibonacciBackoff = backoff.fibonacci {
-      initialDelay: 10,
-      maxDelay: 300
+      initialDelay: 100,
+      maxDelay: 10000
     }
-    @fibonacciBackoff.failAfter 10
 
     super
 

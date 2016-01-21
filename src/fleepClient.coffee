@@ -253,6 +253,14 @@ module.exports = class FleepClient extends EventEmitter
       poll_flags: ['skip_hidden']
 
     @post 'account/poll', data, (err, resp) =>
+      if err isnt null and err.error_id is "no_token" # Token expired
+        @once 'authenticated', () ->
+          @poll()
+
+        @login @options.email, @options.password
+        return
+
+
       @emit 'pollcomplete', resp
 
   # Send a new message to Fleep

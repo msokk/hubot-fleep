@@ -88,6 +88,11 @@ module.exports = class WebRequest extends EventEmitter
 
           # Call the callback with error data and return on HTTP 4XX errors
           if response.statusCode >= 400 and response.statusCode < 500
+            try
+              data = JSON.parse data
+            catch error
+              @logger.error 'Error when trying to decode the response as JSON'
+
             callback? data
             return
 

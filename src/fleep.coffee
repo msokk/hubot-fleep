@@ -21,6 +21,8 @@ class Fleep extends Adapter
     # The client will be the class doing most of the hard work of
     # passing requests to and from Fleep
     @fleepClient = new FleepClient {
+      email: @options.email,
+      password: @options.password,
       name: @robot.name,
       markSeen: @options.markSeen
     }, @robot
